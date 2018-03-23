@@ -48,7 +48,7 @@ class Main extends PluginBase implements CallAction{
 
     public function onEnable(): void{
         self::allRegisterEvents();
-        self::checkAPI();
+        self::loadAPI();
         self::loadClass();
     }
 
@@ -60,16 +60,9 @@ class Main extends PluginBase implements CallAction{
         $this->console = new Console($this);
     }
 
-    public function checkAPI(): void{
-        if ($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") === null ||
-        $this->getServer()->getPluginManager()->getPlugin("FormAPI") === null){
-        $this->getLogger()->critical("Not found API");
-        $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
-        else{
+    public function loadAPI(): void{
         $this->economyapi = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
         $this->formapi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-        }
     }
 
     public function allRegisterEvents(): void{
