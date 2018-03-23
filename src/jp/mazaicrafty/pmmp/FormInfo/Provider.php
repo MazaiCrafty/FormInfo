@@ -16,27 +16,35 @@
 
 namespace jp\mazaicrafty\pmmp\FormInfo;
 
-# Events
-use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerInteractEvent;
+# Utils
+use pocketmine\utils\Config;
 
-class EventListener implements Listener{
+class Provider{
 
     /**
-     * @param PlayerInteractEvent $event
+     * @var Main
      */
-    public function onInteract(PlayerInteractEvent $event): void{
-        $player = $event->getPlayer();
-        
-        if ($event->getItem() === /*Item*/){
-            $this->getMain()->getMenu()->createMenu($player);
+    private $main;
+
+    /**
+     * @param Main $main
+     */
+    public function __construct(Main $main){
+        $this->main = $main;
+        if (!is_file($this->getMain()->getDataFolder() . "message.yml")){
+            @mkdir($this->getMain()->getDatafolder());
+            $this->getMain()->saveResource("message.yml");
         }
+
+        $this->messages = new Config($this->getMain()->getDataFolder() . "messages.yml", Config::YAML, []);
+        $this->messages->reload();
     }
 
     /**
-     * @return Main
+     * @param string $message
+     * @return string
      */
-    public function getMain(): Main{
-        return $this->main;
+    public function getMessage(string $message){
+        return $this->messages->get($message);
     }
 }

@@ -19,7 +19,9 @@ namespace jp\mazaicrafty\pmmp\FormInfo\interfaces;
 interface CallAction{
     public function getMain(): Main;
     public function getForm(): FormAPI;
+    public function getProvider(): Provider;
     public function getEconomy(): EconomyAPI;
-    public function getStatus(): Status;
     public function getMenu(): Menu;
+    public function getStatus(): Status;
+    public function getConsole(): Console;
 }

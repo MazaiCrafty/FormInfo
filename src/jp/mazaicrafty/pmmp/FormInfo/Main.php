@@ -24,32 +24,39 @@ use pocketmine\Player;
 
 # Utils
 use pocketmine\utils\TextFormat as COLOR;
-use pocketmine\utils\Config;
 
 # API
-use onebone\EconomyAPI;
-use jojoe77777\FormAPI;
+use jojoe77777\FormAPI\FormAPI;
+use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements CallAction{
 
-    /*
-    * @var EconomyAPI
-    */
+    /**
+     * @var EconomyAPI
+     */
     private $economyAPI;
 
-    /*
-    * @var FormAPI
-    */
+    /**
+     * @var FormAPI
+     */
     private $formAPI;
 
+    /**
+     * @var Provider
+     */
+    private $provider;
+
     public function onEnable(): void{
+        self::allRegisterEvents();
         self::checkAPI();
         self::loadClass();
     }
 
     public function loadClass(): void{
+        $this->provider = new Provider($this);
         $this->menu = new Menu($this);
         $this->status = new Status($this);
+        $this->console = new Console($this);
     }
 
     public function checkAPI(): void{
@@ -64,24 +71,57 @@ class Main extends PluginBase implements CallAction{
         }
     }
 
+    public function allRegisterEvents(): void{
+        Server::getInstance()->getPluginManager()->registerEvents($this, $this);
+    }
+
+    /**
+     * @return Main
+     */
     public function getMain(): Main{
         return $this;
     }
 
+    /**
+     * @return EconomyAPI
+     */
     public function getEconomy(): EconomyAPI{
         return $this->economyAPI;
     }
 
+    /**
+     * @return FormAPI
+     */
     public function getForm(): FormAPI{
         return $this->formAPI;
     }
 
+    /**
+     * @return Provider
+     */
+    public function getProvider(): Provider{
+        return $this->provider;
+    }
+
+    /**
+     * @return Menu
+     */
     public function getMenu(): Menu{
         return $this->menu;
     }
 
+    /**
+     * @return Status
+     */
     public function getStatus(): Status{
         return $this->status;
+    }
+
+    /**
+     * @return Console
+     */
+    public function getConsole(): Console{
+        return $this->console;
     }
 
 }

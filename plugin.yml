@@ -1,23 +1,7 @@
-name: TempBanUI
-main: TempBanUI\Main
-api: [3.0.0-ALPHA11]
+name: FormInfo
+main: jp\mazaicrafty\pmmp\FormInfo\Main
+api:
+- 3.0.0-ALPHA11
+- 3.0.0-ALPHA12
 version: 1.0
-author: SonsaYT
-
-commands:
- tban:
-  description: "Open TempBanUI"
-  permission: use.tban
-  
- tcheck:
-  description: "Check player status"
-  permission: use.tcheck
-  
-permissions:
- use.tban:
-  default: op
-  description: Use /tban command
-  
- use.tcheck:
-  default: op
-  description: Use /tcheck command
+author: MazaiCrafty

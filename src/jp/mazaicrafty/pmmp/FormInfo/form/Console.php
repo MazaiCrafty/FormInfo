@@ -17,8 +17,10 @@
 namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
 # Player
-use pocketmine\Server;
 use pocketmine\Player;
+
+# Command
+use pocketmine\command\ConsoleCommandSender;
 
 class Menu{
 
@@ -34,10 +36,7 @@ class Menu{
         $this->main = $main;
     }
 
-    /**
-     * @param Player $player
-     */
-    public function createMenu(Player $player){
+    public function createConsole(Player $player){
         $api = Server::getInstance()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createSimpleForm(function (Player $player, array $args){
             $result = $args[0];
@@ -45,24 +44,18 @@ class Menu{
 
             switch ($result){
                 case 0:
-                // Close the Menu
+                $this->getMain()->getMenu()->createMenu();
                 return;
 
                 case 1:
-                $this->getMain()->getStatus()->createStatus();
-                return;
-                
-                case 2:
-                $this->getMain()->getConsole()->createConsole();
+                $this->getMain()->getServer()->dispatchCommand($player, $result);
                 return;
             }
         });
 
-        $form->setTitle($this->getMain()->getProvider()->getMessage("menu.setTitle"));
-        $form->setContent($this->getMain()->getProvider()->getMessage("menu.setContent"));
-        $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.close")); // Close the Menu
-        $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.status")); // createStatus()
-        $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.console")); // createConsole()
+        $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
+        $form->addButton($this->getMain()->getProvider()->getMessage("console.addButton.back")); // Back to Menu
+        $form->addInput($this->getMain()->getProvider()->getMessage("console.addInput.command")); // Input command
 
         $form->sendToPlayer($player);
     }

@@ -23,20 +23,20 @@ use pocketmine\Player;
 class Menu{
 
     /**
-    * @var Main
-    */
+     * @var Main
+     */
     private $main;
 
-    /*
-    * @param Main $owner
-    */
+    /**
+     * @param Main $owner
+     */
     public function __construct(Main $owner){
         $this->main = $main;
     }
 
     /**
-    * @param Player $player
-    */
+     * @param Player $player
+     */
     public function createStatus(Player $player){
         $money = $this->getMain()->getEconomy()->myMoney($player);
         $api = Server::getInstance()->getPluginManager()->getPlugin("FormAPI");
@@ -52,16 +52,16 @@ class Menu{
             }
         });
 
-        $form->setTitle("");
-        $form->addButton(""); // Close the Menu
-        $form->setContent($money);
+        $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
+        $form->addButton($this->getMain()->getProvider()->getMessage("status.addButton.back")); // Close the Menu
+        $form->setContent($this->getMain()->getProvider()->getMessage("status.setContent.myMoney"));
 
         $form->sendToPlayer($player);
     }
 
-    /*
-    * @return Main
-    */
+    /**
+     * @return Main
+     */
     public function getMain(): Main{
         return $this->main;
     }
