@@ -53,6 +53,7 @@ class Main extends PluginBase implements CallAction{
     }
 
     public function loadClass(): void{
+        $this->listener = new EventListener($this);
         $this->provider = new Provider($this);
         $this->menu = new Menu($this);
         $this->status = new Status($this);
@@ -82,6 +83,13 @@ class Main extends PluginBase implements CallAction{
         return $this;
     }
 
+    /**
+     * @return EventListener
+     */
+    public function getListener(): EventListener{
+        return $this->listener;
+    }
+    
     /**
      * @return EconomyAPI
      */
