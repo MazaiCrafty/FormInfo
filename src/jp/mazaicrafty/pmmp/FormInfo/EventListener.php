@@ -23,6 +23,18 @@ use pocketmine\event\player\PlayerInteractEvent;
 class EventListener implements Listener{
 
     /**
+     * @var Main
+     */
+    private $main;
+    
+    /**
+     * @param Main $main
+     */
+    public function __construct(Main $main){
+        $this->main = $main;
+    }
+    
+    /**
      * @param PlayerInteractEvent $event
      */
     public function onInteract(PlayerInteractEvent $event): void{
