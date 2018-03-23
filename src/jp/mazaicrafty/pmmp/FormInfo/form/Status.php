@@ -29,7 +29,7 @@ class Menu{
     /**
      * @param Main $owner
      */
-    public function __construct(Main $owner){
+    public function __construct(Main $main){
         $this->main = $main;
     }
 
