@@ -37,7 +37,7 @@ class Menu{
     }
 
     public function createConsole(Player $player){
-        $api = Server::getInstance()->getPluginManager()->getPlugin("FormAPI");
+        $api = $this->getMain()->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createSimpleForm(function (Player $player, array $args){
             $result = $args[0];
             if ($result === null) return;
