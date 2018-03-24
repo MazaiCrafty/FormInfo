@@ -26,7 +26,7 @@ use jp\mazaicrafty\pmmp\FormInfo\form\Status;
 use jp\mazaicrafty\pmmp\FormInfo\form\Console;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 
-class Menu implemets CallAction{
+class Menu implements CallAction{
 
     /**
      * @var Main
