@@ -33,7 +33,7 @@ class Console implements CallAction{
     private $main;
 
     /**
-     * @param Main $owner
+     * @param Main $main
      */
     public function __construct(Main $main){
         $this->main = $main;
