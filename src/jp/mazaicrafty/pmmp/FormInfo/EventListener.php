@@ -16,9 +16,15 @@
 
 namespace jp\mazaicrafty\pmmp\FormInfo;
 
+# Base
+use pocketmine\Server;
+
 # Events
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
+
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\Main;
 
 class EventListener implements Listener{
 
@@ -32,6 +38,7 @@ class EventListener implements Listener{
      */
     public function __construct(Main $main){
         $this->main = $main;
+        $this->getMain()->getServer()->getPluginManager()->registerEvents($this, self::getMain());
     }
     
     /**
@@ -39,8 +46,9 @@ class EventListener implements Listener{
      */
     public function onInteract(PlayerInteractEvent $event): void{
         $player = $event->getPlayer();
-        
-        if ($event->getItem() === /*Item*/){
+
+        if ($player->getInventory()->getItemInHand()->getID() === 
+        $this->getMain()->getProvider()->getSetting("tap.item")){
             $this->getMain()->getMenu()->createMenu($player);
         }
     }

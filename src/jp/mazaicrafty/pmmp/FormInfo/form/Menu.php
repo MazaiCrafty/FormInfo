@@ -20,7 +20,13 @@ namespace jp\mazaicrafty\pmmp\FormInfo\form;
 use pocketmine\Server;
 use pocketmine\Player;
 
-class Menu{
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\Main;
+use jp\mazaicrafty\pmmp\FormInfo\form\Status;
+use jp\mazaicrafty\pmmp\FormInfo\form\Console;
+use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
+
+class Menu implemets CallAction{
 
     /**
      * @var Main
@@ -28,7 +34,7 @@ class Menu{
     private $main;
 
     /**
-     * @param Main $owner
+     * @param Main $main
      */
     public function __construct(Main $main){
         $this->main = $main;

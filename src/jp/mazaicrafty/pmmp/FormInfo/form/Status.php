@@ -14,12 +14,18 @@
  * This program is free plugin.
  */
 
- namespace jp\mazaicrafty\pmmp\FormInfo\form;
+namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
 # Player
 use pocketmine\Player;
 
-class Menu{
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\Main;
+use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
+use jp\mazaicrafty\pmmp\FormInfo\form\Console;
+use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
+
+class Status implements CallAction{
 
     /**
      * @var Main

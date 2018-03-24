@@ -19,10 +19,13 @@ namespace jp\mazaicrafty\pmmp\FormInfo\form;
 # Player
 use pocketmine\Player;
 
-# Command
-use pocketmine\command\ConsoleCommandSender;
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\Main;
+use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
+use jp\mazaicrafty\pmmp\FormInfo\form\Status;
+use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 
-class Menu{
+class Console implements CallAction{
 
     /**
      * @var Main

@@ -19,6 +19,9 @@ namespace jp\mazaicrafty\pmmp\FormInfo;
 # Utils
 use pocketmine\utils\Config;
 
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\Main;
+
 class Provider{
 
     /**
@@ -31,13 +34,32 @@ class Provider{
      */
     public function __construct(Main $main){
         $this->main = $main;
-        if (!is_file($this->getMain()->getDataFolder() . "message.yml")){
-            @mkdir($this->getMain()->getDatafolder());
+        if (!is_file($this->getMain()->getDataFolder() . "message.yml") &&
+        !is_file($this->getMain()->getDataFolder() . "config.yml")){
+            @mkdir($this->getMain()->getDataFolder());
             $this->getMain()->saveResource("message.yml");
+            $this->getMain()->saveResource("config.yml");
         }
 
         $this->messages = new Config($this->getMain()->getDataFolder() . "messages.yml", Config::YAML, []);
         $this->messages->reload();
+        $this->config = new Config($this->getMain()->getDataFolder() . "config.yml", Config::YAML, []);
+        $this->config->reload();
+    }
+
+    /**
+     * @return Main
+     */
+    public function getMain(){
+        return $this->main;
+    }
+
+    /**
+     * @param string $setting
+     * @return string
+     */
+    public function getSetting(string $setting){
+        return $this->config->get($setting);
     }
 
     /**

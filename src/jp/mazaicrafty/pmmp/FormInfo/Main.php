@@ -18,7 +18,6 @@ namespace jp\mazaicrafty\pmmp\FormInfo;
 
 # Base
 use pocketmine\plugin\PluginBase;
-use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 use pocketmine\Server;
 use pocketmine\Player;
 
@@ -29,7 +28,13 @@ use pocketmine\utils\TextFormat as COLOR;
 use jojoe77777\FormAPI\FormAPI;
 use onebone\economyapi\EconomyAPI;
 
-class Main extends PluginBase implements CallAction{
+# FormInfo
+use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
+use jp\mazaicrafty\pmmp\FormInfo\form\Status;
+use jp\mazaicrafty\pmmp\FormInfo\form\Console;
+use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
+
+class Main extends PluginBase{
 
     /**
      * @var EconomyAPI
@@ -46,13 +51,32 @@ class Main extends PluginBase implements CallAction{
      */
     private $provider;
 
+    /**
+     * @var Listener
+     */
+    private $listener;
+
+    /**
+     * @var Menu
+     */
+    private $menu;
+
+    /**
+     * @var Status
+     */
+    private $status;
+
+    /**
+     * @var Console
+     */
+    private $console;
+
     public function onEnable(): void{
-        self::allRegisterEvents();
         self::loadAPI();
         self::loadClass();
     }
 
-    public function loadClass(): void{
+    public function loadClass(){
         $this->listener = new EventListener($this);
         $this->provider = new Provider($this);
         $this->menu = new Menu($this);
@@ -65,9 +89,6 @@ class Main extends PluginBase implements CallAction{
         $this->formapi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
     }
 
-    public function allRegisterEvents(): void{
-        Server::getInstance()->getPluginManager()->registerEvents($this, $this);
-    }
 
     /**
      * @return Main
