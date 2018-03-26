@@ -18,13 +18,13 @@ namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
 # Player
 use pocketmine\Player;
+use pocketmine\Server;
 
 # FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\Main;
-use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
-use jp\mazaicrafty\pmmp\FormInfo\form\Console;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
-
+use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
+use jojoe77777\FormAPI\FormAPI;
 class Status implements CallAction{
 
     /**
@@ -33,7 +33,7 @@ class Status implements CallAction{
     private $main;
 
     /**
-     * @param Main $owner
+     * @param Main $main
      */
     public function __construct(Main $main){
         $this->main = $main;
@@ -43,10 +43,11 @@ class Status implements CallAction{
      * @param Player $player
      */
     public function createStatus(Player $player){
-        $money = $this->getMain()->getEconomy()->myMoney($player);
-        $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
+        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
             $result = $args[0];
-            if ($result === null) return;
+            $name = $player->getName();
+            $money = $this->getMain()->getEconomy()->myMoney($name);
+            if(!isset($result)) return;
 
             switch ($result){
                 case 0:

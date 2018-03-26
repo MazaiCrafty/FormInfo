@@ -18,13 +18,13 @@ namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
 # Player
 use pocketmine\Player;
+use pocketmine\Server;
 
 # FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\Main;
-use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
-use jp\mazaicrafty\pmmp\FormInfo\form\Status;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
-
+use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
+use jojoe77777\FormAPI\FormAPI;
 class Console implements CallAction{
 
     /**
@@ -40,22 +40,19 @@ class Console implements CallAction{
     }
 
     public function createConsole(Player $player){
-        $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
-            $form = $api->createSimpleForm(function (Player $player, array $args){
-                $result = $args[0];
-                if ($result === null){
-                    return;
-                } 
+        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
+            $result = $args[0];
+            if(!isset($result)) return;
     
-                switch ($result){
-                    case 0:
-                    $this->getMain()->getMenu()->createMenu($player);
-                    return;
-    
-                    case 1:
-                    $this->getMain()->getServer()->dispatchCommand($player, $result);
-                    return;
-                }
+            switch ($result){
+                case 0:
+                $this->getMain()->getMenu()->createMenu($player);
+                return;
+
+                case 1:
+                $this->getMain()->getServer()->dispatchCommand($player, $result);
+                return;
+            }
         });
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
@@ -71,4 +68,5 @@ class Console implements CallAction{
     public function getMain(): Main{
         return $this->main;
     }
+
 }

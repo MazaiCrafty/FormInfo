@@ -22,10 +22,9 @@ use pocketmine\Player;
 
 # FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\Main;
-use jp\mazaicrafty\pmmp\FormInfo\form\Status;
-use jp\mazaicrafty\pmmp\FormInfo\form\Console;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
-
+use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
+use jojoe77777\FormAPI\FormAPI;
 class Menu implements CallAction{
 
     /**
@@ -44,11 +43,9 @@ class Menu implements CallAction{
      * @param Player $player
      */
     public function createMenu(Player $player){
-        $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
+        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
             $result = $args[0];
-            if ($result === null){
-                return;
-            }
+            if(!isset($result)) return;
 
             switch ($result){
                 case 0:
@@ -58,7 +55,7 @@ class Menu implements CallAction{
                 case 1:
                 $this->getMain()->getStatus()->createStatus($player);
                 return;
-                
+
                 case 2:
                 $this->getMain()->getConsole()->createConsole($player);
                 return;
@@ -80,4 +77,5 @@ class Menu implements CallAction{
     public function getMain(): Main{
         return $this->main;
     }
+
 }
