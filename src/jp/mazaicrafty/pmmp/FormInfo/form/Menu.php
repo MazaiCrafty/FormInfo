@@ -44,10 +44,11 @@ class Menu implements CallAction{
      * @param Player $player
      */
     public function createMenu(Player $player){
-        $api = $this->getMain()->getServer()->getPluginManager()->getPlugin("FormAPI");
-        $form = $api->createSimpleForm(function (Player $player, array $args){
+        $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
             $result = $args[0];
-            if ($result === null) return;
+            if ($result === null){
+                return;
+            }
 
             switch ($result){
                 case 0:

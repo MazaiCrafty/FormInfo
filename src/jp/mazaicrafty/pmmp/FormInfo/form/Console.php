@@ -40,20 +40,22 @@ class Console implements CallAction{
     }
 
     public function createConsole(Player $player){
-        $api = $this->getMain()->getServer()->getPluginManager()->getPlugin("FormAPI");
-        $form = $api->createSimpleForm(function (Player $player, array $args){
-            $result = $args[0];
-            if ($result === null) return;
-
-            switch ($result){
-                case 0:
-                $this->getMain()->getMenu()->createMenu($player);
-                return;
-
-                case 1:
-                $this->getMain()->getServer()->dispatchCommand($player, $result);
-                return;
-            }
+        $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
+            $form = $api->createSimpleForm(function (Player $player, array $args){
+                $result = $args[0];
+                if ($result === null){
+                    return;
+                } 
+    
+                switch ($result){
+                    case 0:
+                    $this->getMain()->getMenu()->createMenu($player);
+                    return;
+    
+                    case 1:
+                    $this->getMain()->getServer()->dispatchCommand($player, $result);
+                    return;
+                }
         });
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
