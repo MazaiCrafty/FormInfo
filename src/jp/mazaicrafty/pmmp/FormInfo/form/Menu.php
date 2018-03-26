@@ -55,11 +55,11 @@ class Menu implements CallAction{
                 return;
 
                 case 1:
-                $this->getMain()->getStatus()->createStatus();
+                $this->getMain()->getStatus()->createStatus($player);
                 return;
                 
                 case 2:
-                $this->getMain()->getConsole()->createConsole();
+                $this->getMain()->getConsole()->createConsole($player);
                 return;
             }
         });
