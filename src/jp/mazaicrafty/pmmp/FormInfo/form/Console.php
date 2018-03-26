@@ -47,7 +47,7 @@ class Console implements CallAction{
 
             switch ($result){
                 case 0:
-                $this->getMain()->getMenu()->createMenu();
+                $this->getMain()->getMenu()->createMenu($player);
                 return;
 
                 case 1:
