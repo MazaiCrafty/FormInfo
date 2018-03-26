@@ -52,7 +52,7 @@ class Status implements CallAction{
             switch ($result){
                 case 0:
                 // Back to Menu
-                $this->getMain()->getMenu()->createMenu();
+                $this->getMain()->getMenu()->createMenu($player);
                 return;
             }
         });
