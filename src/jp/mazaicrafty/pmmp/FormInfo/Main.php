@@ -85,8 +85,8 @@ class Main extends PluginBase{
     }
 
     public function loadAPI(): void{
-        $this->economyApi = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-        $this->formApi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $this->economyAPI = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        $this->formAPI = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
     }
 
 
@@ -108,14 +108,14 @@ class Main extends PluginBase{
      * @return EconomyAPI
      */
     public function getEconomy(): EconomyAPI{
-        return $this->economyApi;
+        return $this->economyAPI;
     }
 
     /**
      * @return FormAPI
      */
     public function getForm(): FormAPI{
-        return $this->formApi;
+        return $this->formAPI;
     }
 
     /**
