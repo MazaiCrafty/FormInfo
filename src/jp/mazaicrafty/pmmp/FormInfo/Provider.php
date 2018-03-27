@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -34,17 +34,12 @@ class Provider{
      */
     public function __construct(Main $main){
         $this->main = $main;
-        if (!is_file($this->getMain()->getDataFolder() . "message.yml") &&
-        !is_file($this->getMain()->getDataFolder() . "config.yml")){
-            @mkdir($this->getMain()->getDataFolder());
-            $this->getMain()->saveResource("message.yml");
-            $this->getMain()->saveResource("config.yml");
-        }
+        @mkdir($this->getMain()->getDataFolder());
+        $this->getMain()->saveResource("messages.yml");
+        $this->getMain()->saveResource("config.yml");
 
-        $this->messages = new Config($this->getMain()->getDataFolder() . "messages.yml", Config::YAML, []);
-        $this->messages->reload();
-        $this->config = new Config($this->getMain()->getDataFolder() . "config.yml", Config::YAML, []);
-        $this->config->reload();
+        $this->messages = new Config($this->getMain()->getDataFolder() . "messages.yml", Config::YAML);
+        $this->config = new Config($this->getMain()->getDataFolder() . "config.yml", Config::YAML);
     }
 
     /**

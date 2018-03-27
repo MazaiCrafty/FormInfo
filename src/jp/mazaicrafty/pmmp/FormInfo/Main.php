@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -72,8 +72,8 @@ class Main extends PluginBase{
     private $console;
 
     public function onEnable(): void{
-        self::loadAPI();
-        self::loadClass();
+        $this->loadAPI();
+        $this->loadClass();
     }
 
     public function loadClass(){
@@ -85,8 +85,8 @@ class Main extends PluginBase{
     }
 
     public function loadAPI(): void{
-        $this->economyapi = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-        $this->formapi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $this->economyApi = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        $this->formApi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
     }
 
 
@@ -103,19 +103,19 @@ class Main extends PluginBase{
     public function getListener(): EventListener{
         return $this->listener;
     }
-    
+
     /**
      * @return EconomyAPI
      */
     public function getEconomy(): EconomyAPI{
-        return $this->economyAPI;
+        return $this->economyApi;
     }
 
     /**
      * @return FormAPI
      */
     public function getForm(): FormAPI{
-        return $this->formAPI;
+        return $this->formApi;
     }
 
     /**

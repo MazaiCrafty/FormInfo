@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -43,19 +43,20 @@ class Status implements CallAction{
      * @param Player $player
      */
     public function createStatus(Player $player){
-        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
-            $result = $args[0];
-            $name = $player->getName();
-            $money = $this->getMain()->getEconomy()->myMoney($name);
-            if(!isset($result)) return;
+        $form = $this->getMain()->getForm()->createSimpleForm(
+            function (Player $player, $result){
+                if($result === null) return;// NOTE: Cancelled
+                $name = $player->getName();
+                $money = $this->getMain()->getEconomy()->myMoney($name);
 
-            switch ($result){
-                case 0:
-                // Back to Menu
-                $this->getMain()->getMenu()->createMenu($player);
-                return;
+                switch ($result){
+                    case 0:
+                    // Back to Menu
+                    $this->getMain()->getMenu()->createMenu($player);
+                    return;
+                }
             }
-        });
+        );
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
         $form->addButton($this->getMain()->getProvider()->getMessage("status.addButton.back")); // Close the Menu
