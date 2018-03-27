@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -40,20 +40,21 @@ class Console implements CallAction{
     }
 
     public function createConsole(Player $player){
-        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
-            $result = $args[0];
-            if(!isset($result)) return;
-    
-            switch ($result){
-                case 0:
-                $this->getMain()->getMenu()->createMenu($player);
-                return;
+        $form = $this->getMain()->getForm()->createSimpleForm(
+            function (Player $player, $result){
+                if($result === null) return;// NOTE: Cancelled
 
-                case 1:
-                $this->getMain()->getServer()->dispatchCommand($player, $result);
-                return;
+                switch ($result){
+                    case 0:
+                    $this->getMain()->getMenu()->createMenu($player);
+                    return;
+
+                    case 1:
+                    $this->getMain()->getServer()->dispatchCommand($player, $result);
+                    return;
+                }
             }
-        });
+        );
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
         $form->addButton($this->getMain()->getProvider()->getMessage("console.addButton.back")); // Back to Menu

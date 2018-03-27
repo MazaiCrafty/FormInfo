@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -43,24 +43,25 @@ class Menu implements CallAction{
      * @param Player $player
      */
     public function createMenu(Player $player){
-        $form = $this->getMain()->getForm()->createSimpleForm(function (Player $player, array $args){
-            $result = $args[0];
-            if(!isset($result)) return;
+        $form = $this->getMain()->getForm()->createSimpleForm(
+            function (Player $player, $result) {
+                if($result === null) return;// NOTE: Cancelled
 
-            switch ($result){
-                case 0:
-                // Close the Menu
-                return;
+                switch ($result){
+                    case 0:
+                    // Close the Menu
+                    return;
 
-                case 1:
-                $this->getMain()->getStatus()->createStatus($player);
-                return;
+                    case 1:
+                    $this->getMain()->getStatus()->createStatus($player);
+                    return;
 
-                case 2:
-                $this->getMain()->getConsole()->createConsole($player);
-                return;
+                    case 2:
+                    $this->getMain()->getConsole()->createConsole($player);
+                    return;
+                }
             }
-        });
+        );
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("menu.setTitle"));
         $form->setContent($this->getMain()->getProvider()->getMessage("menu.setContent"));

@@ -1,9 +1,9 @@
 <?php
 
 /*
- * ___  ___               _ _____            __ _         
- * |  \/  |              (_)  __ \          / _| |        
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _ 
+ * ___  ___               _ _____            __ _
+ * |  \/  |              (_)  __ \          / _| |
+ * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
  * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
  * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
  * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
@@ -28,26 +28,24 @@ use jp\mazaicrafty\pmmp\FormInfo\Main;
 
 class EventListener implements Listener{
 
-    /**
-     * @var Main
-     */
+    /** @var Main */
     private $main;
-    
+
     /**
      * @param Main $main
      */
     public function __construct(Main $main){
         $this->main = $main;
-        $this->getMain()->getServer()->getPluginManager()->registerEvents($this, self::getMain());
+        $this->getMain()->getServer()->getPluginManager()->registerEvents($this, $main);
     }
-    
+
     /**
      * @param PlayerInteractEvent $event
      */
     public function onInteract(PlayerInteractEvent $event): void{
         $player = $event->getPlayer();
 
-        if ($player->getInventory()->getItemInHand()->getID() === 
+        if ($player->getInventory()->getItemInHand()->getID() ===
         $this->getMain()->getProvider()->getSetting("tap.item")){
             $this->getMain()->getMenu()->createMenu($player);
         }
