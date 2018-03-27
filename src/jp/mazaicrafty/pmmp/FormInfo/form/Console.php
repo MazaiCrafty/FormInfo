@@ -58,7 +58,7 @@ class Console implements CallAction{
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
         $form->addButton($this->getMain()->getProvider()->getMessage("console.addButton.back")); // Back to Menu
-        $form->addInput($this->getMain()->getProvider()->getMessage("console.addInput.command")); // Input command
+        //$form->addInput($this->getMain()->getProvider()->getMessage("console.addInput.command")); // Input command
 
         $form->sendToPlayer($player);
     }
