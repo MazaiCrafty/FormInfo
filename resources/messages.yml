@@ -1,32 +1,32 @@
-# ƒƒjƒ…[‚Ìƒ^ƒCƒgƒ‹
+# ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¿ã‚¤ãƒˆãƒ«
 # Title
 menu.setTitle: "Menu"
 
-# “à—e
+# å†…å®¹
 # Content
 menu.setContent: "Select the Button"
 
-# •Â‚¶‚éƒ{ƒ^ƒ“
+# é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
 # Close button
 menu.addButton.close: "Close"
 
-# ƒXƒe[ƒ^ƒX‚Ìƒ{ƒ^ƒ“
+# ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒœã‚¿ãƒ³
 # Status button
 menu.addButton.status: "Status"
 
-# ƒRƒ“ƒ\[ƒ‹‚Ìƒ{ƒ^ƒ“
+# ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã®ãƒœã‚¿ãƒ³
 # Console button
 menu.addButton.console: "Console"
 
-# ƒXƒe[ƒ^ƒX‚Ìƒ^ƒCƒgƒ‹
+# ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚¿ã‚¤ãƒˆãƒ«
 # Title
 status.setTitle: "Status"
 
-# ƒoƒbƒNƒ{ƒ^ƒ“
+# ãƒãƒƒã‚¯ãƒœã‚¿ãƒ³
 # Back button
 status.addButton.back: "Back to Menu"
 
-# “à—e
+# å†…å®¹
 # Content
 # %PLAYER%...Player Name
 # %MONEY%...Player's Money(Economy)
@@ -34,14 +34,14 @@ status.addButton.back: "Back to Menu"
 # {NL}...New Line
 status.setContent: "%PLAYER%'s money: %MONEY%{NL}%X%{NL}%Y%{NL}%Z%"
 
-# ƒRƒ“ƒ\[ƒ‹‚Ìƒ^ƒCƒgƒ‹
+# ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã®ã‚¿ã‚¤ãƒˆãƒ«
 # Title
 console.setTitle: "Console"
 
-# ƒoƒbƒNƒ{ƒ^ƒ“
+# ãƒãƒƒã‚¯ãƒœã‚¿ãƒ³
 # Back button
 console.addButton.back: "Back to Menu"
 
-# ƒCƒ“ƒvƒbƒg
+# ã‚¤ãƒ³ãƒ—ãƒƒãƒˆ
 # Input
 console.addInput.command: "Execute"
