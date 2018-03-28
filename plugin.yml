@@ -5,6 +5,8 @@ api:
 - 3.0.0-ALPHA12
 version: 1.0
 author: MazaiCrafty
+author:
+# fuyutsuki, famima65536
 depend:
 - EconomyAPI
 - FormAPI
