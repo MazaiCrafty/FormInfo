@@ -1,21 +1,47 @@
+# メニューのタイトル
+# Title
 menu.setTitle: "Menu"
 
+# 内容
+# Content
 menu.setContent: "Select the Button"
 
+# 閉じるボタン
+# Close button
 menu.addButton.close: "Close"
 
+# ステータスのボタン
+# Status button
 menu.addButton.status: "Status"
 
+# コンソールのボタン
+# Console button
 menu.addButton.console: "Console"
 
+# ステータスのタイトル
+# Title
 status.setTitle: "Status"
 
+# バックボタン
+# Back button
 status.addButton.back: "Back to Menu"
 
-status.addButton.myMoney: "${money}"
+# 内容
+# Content
+# %PLAYER%...Player Name
+# %MONEY%...Player's Money(Economy)
+# %X%, %Y%, %Z%...Player's XYZ
+# {NL}...New Line
+status.setContent: "%PLAYER%'s money: %MONEY%{NL}%X%{NL}%Y%{NL}%Z%"
 
+# コンソールのタイトル
+# Title
 console.setTitle: "Console"
 
+# バックボタン
+# Back button
 console.addButton.back: "Back to Menu"
 
+# インプット
+# Input
 console.addInput.command: "Execute"
