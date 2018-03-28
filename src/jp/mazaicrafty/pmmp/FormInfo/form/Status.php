@@ -24,8 +24,10 @@ use pocketmine\Server;
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
-use jojoe77777\FormAPI\FormAPI;
+
 class Status implements CallAction{
+
+    const BACK_BUTTON = 0;
 
     /**
      * @var Main
@@ -46,11 +48,9 @@ class Status implements CallAction{
         $form = $this->getMain()->getForm()->createSimpleForm(
             function (Player $player, $result){
                 if($result === null) return;// NOTE: Cancelled
-                $name = $player->getName();
-                $money = $this->getMain()->getEconomy()->myMoney($name);
 
                 switch ($result){
-                    case 0:
+                    case Status::BACK_BUTTON:
                     // Back to Menu
                     $this->getMain()->getMenu()->createMenu($player);
                     return;
@@ -58,9 +58,10 @@ class Status implements CallAction{
             }
         );
 
+        $money = $this->getMain()->getEconomy()->myMoney($player);
         $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
+        $form->setContent(str_replace("%MONEY%", $money, $this->getMain()->getProvider()->getMessage("status.setContent.myMoney")));
         $form->addButton($this->getMain()->getProvider()->getMessage("status.addButton.back")); // Close the Menu
-        $form->setContent($this->getMain()->getProvider()->getMessage("status.setContent.myMoney"));
 
         $form->sendToPlayer($player);
     }

@@ -24,7 +24,7 @@ use pocketmine\Server;
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
-use jojoe77777\FormAPI\FormAPI;
+
 class Console implements CallAction{
 
     /**
@@ -40,25 +40,18 @@ class Console implements CallAction{
     }
 
     public function createConsole(Player $player){
-        $form = $this->getMain()->getForm()->createSimpleForm(
-            function (Player $player, $result){
-                if($result === null) return;// NOTE: Cancelled
+        $form = $this->getMain()->getForm()->createCustomForm(
+            function (Player $player, $args){
+                $command = $args[0];
+                if($command === null) return;// NOTE: Cancelled
 
-                switch ($result){
-                    case 0:
-                    $this->getMain()->getMenu()->createMenu($player);
-                    return;
-
-                    case 1:
-                    $this->getMain()->getServer()->dispatchCommand($player, $result);
-                    return;
-                }
+                $this->getMain()->getServer()->dispatchCommand($player, $command);
+                return;
             }
         );
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("console.setTitle"));
-        $form->addButton($this->getMain()->getProvider()->getMessage("console.addButton.back")); // Back to Menu
-        //$form->addInput($this->getMain()->getProvider()->getMessage("console.addInput.command")); // Input command
+        $form->addInput($this->getMain()->getProvider()->getMessage("console.addInput.command")); // Input command
 
         $form->sendToPlayer($player);
     }

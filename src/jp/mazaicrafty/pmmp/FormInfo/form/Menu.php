@@ -24,8 +24,12 @@ use pocketmine\Player;
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
-use jojoe77777\FormAPI\FormAPI;
+
 class Menu implements CallAction{
+
+    const CLOSE_BUTTON = 0;
+    const STATUS_BUTTON = 1;
+    const CONSOLE_BUTTON = 2;
 
     /**
      * @var Main
@@ -48,15 +52,15 @@ class Menu implements CallAction{
                 if($result === null) return;// NOTE: Cancelled
 
                 switch ($result){
-                    case 0:
+                    case Menu::CLOSE_BUTTON:
                     // Close the Menu
                     return;
 
-                    case 1:
+                    case Menu::STATUS_BUTTON:
                     $this->getMain()->getStatus()->createStatus($player);
                     return;
 
-                    case 2:
+                    case Menu::CONSOLE_BUTTON:
                     $this->getMain()->getConsole()->createConsole($player);
                     return;
                 }
