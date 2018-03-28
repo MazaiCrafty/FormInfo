@@ -19,7 +19,7 @@ namespace jp\mazaicrafty\pmmp\FormInfo\form;
 # Player
 use pocketmine\Player;
 use pocketmine\Server;
-
+use pocketmine\level\Level;
 # FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
@@ -58,10 +58,14 @@ class Status implements CallAction{
             }
         );
 
-        $money = $this->getMain()->getEconomy()->myMoney($player);
+        $money = $this->getMain()->getEconomy()->myMoney($player->getName());
+        $replace = ["%MONEY%", "%PLAYER%", "%X%", "%Y%", "%Z%", "{NL}"];
+        $str = [$money, $player->getName(), $player->getX(), $player->getY(), $player->getZ(), "\n"];
+        $content = str_replace($replace , $str, $this->getMain()->getProvider()->getMessage("status.setContent"));
+
         $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
-        $form->setContent(str_replace("%MONEY%", $money, $this->getMain()->getProvider()->getMessage("status.setContent.myMoney")));
         $form->addButton($this->getMain()->getProvider()->getMessage("status.addButton.back")); // Close the Menu
+        $form->setContent($content);
 
         $form->sendToPlayer($player);
     }
