@@ -45,7 +45,7 @@ class Provider{
     /**
      * @return Main
      */
-    public function getMain(){
+    public function getMain(): Main{
         return $this->main;
     }
 
