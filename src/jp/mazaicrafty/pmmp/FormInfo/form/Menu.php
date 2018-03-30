@@ -1,19 +1,5 @@
 <?php
 
-/*
- * ___  ___               _ _____            __ _
- * |  \/  |              (_)  __ \          / _| |
- * | .  . | __ _ ______ _ _| /  \/_ __ __ _| |_| |_ _   _
- * | |\/| |/ _` |_  / _` | | |   | '__/ _` |  _| __| | | |
- * | |  | | (_| |/ / (_| | | \__/\ | | (_| | | | |_| |_| |
- * \_|  |_/\__,_/___\__,_|_|\____/_|  \__,_|_|  \__|\__, |
- *                                                   __/ |
- *                                                  |___/
- * Copyright (C) 2017-2018 @MazaiCrafty (https://twitter.com/MazaiCrafty)
- *
- * This program is free plugin.
- */
-
 namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
 # Player
@@ -28,7 +14,7 @@ use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
 class Menu implements CallAction{
 
     const CLOSE_BUTTON = 0;
-    const STATUS_BUTTON = 1;
+    const PLAYER_STATUS_BUTTON = 1;
     const CONSOLE_BUTTON = 2;
 
     /**
@@ -56,8 +42,8 @@ class Menu implements CallAction{
                     // Close the Menu
                     return;
 
-                    case Menu::STATUS_BUTTON:
-                    $this->getMain()->getStatus()->createStatus($player);
+                    case Menu::PLAYER_STATUS_BUTTON:
+                    $this->getMain()->getStatus()->createPlayerStatus($player);
                     return;
 
                     case Menu::CONSOLE_BUTTON:
