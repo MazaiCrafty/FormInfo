@@ -2,11 +2,9 @@
 
 namespace jp\mazaicrafty\pmmp\FormInfo\form;
 
-# Player
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\level\Level;
-# FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 use jp\mazaicrafty\pmmp\FormInfo\interfaces\CallAction;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
@@ -45,8 +43,37 @@ class PlayerStatus implements CallAction{
         );
 
         $money = $this->getMain()->getEconomy()->myMoney($player->getName());
-        $replace = ["%MONEY%", "%PLAYER%", "%X%", "%Y%", "%Z%", "{NL}"];
-        $str = [$money, $player->getName(), $player->getX(), $player->getY(), $player->getZ(), "\n"];
+        $replace = [
+            "%MONEY%",
+            "%PLAYER%",
+            "%X%",
+            "%Y%",
+            "%Z%",
+            "{NL}",
+            "%PING%",
+            "%IP%",
+            "%UUID%",
+            "%XUID%",
+            "%HEALTH%",
+            "%MAXHEALTH%",
+            "%FIRSTPLAYED%",
+            "%LASTPLAYERD%"
+        ];
+        $str = [
+            $money,
+            $player->getName(),
+            $player->getX(), $player->getY(),
+            $player->getZ(),
+            "\n", 
+            $player->getPing(),
+            $player->getAddress(),
+            $player->getUniqueId(),
+            $player->getXuid(),
+            $player->getHealth(),
+            $player->getMaxHealth(),
+            $player->getFirstPlayed(),
+            $player->getLastPlayed()
+        ];
         $content = str_replace($replace , $str, $this->getMain()->getProvider()->getMessage("status.setContent"));
 
         $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
