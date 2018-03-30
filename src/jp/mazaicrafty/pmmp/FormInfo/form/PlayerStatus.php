@@ -74,10 +74,10 @@ class PlayerStatus implements CallAction{
             $player->getFirstPlayed(),
             $player->getLastPlayed()
         ];
-        $content = str_replace($replace , $str, $this->getMain()->getProvider()->getMessage("status.setContent"));
+        $content = str_replace($replace , $str, $this->getMain()->getProvider()->getMessage("player_status.setContent"));
 
-        $form->setTitle($this->getMain()->getProvider()->getMessage("status.setTitle"));
-        $form->addButton($this->getMain()->getProvider()->getMessage("status.addButton.back")); // Close the Menu
+        $form->setTitle($this->getMain()->getProvider()->getMessage("player_status.setTitle"));
+        $form->addButton($this->getMain()->getProvider()->getMessage("player_status.addButton.back")); // Close the Menu
         $form->setContent($content);
 
         $form->sendToPlayer($player);
