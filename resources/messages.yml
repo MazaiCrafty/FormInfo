@@ -20,11 +20,11 @@ menu.addButton.console: "Console"
 
 # ステータスのタイトル
 # Title
-status.setTitle: "Status"
+player_status.setTitle: "Status"
 
 # バックボタン
 # Back button
-status.addButton.back: "Back to Menu"
+player_status.addButton.back: "Back to Menu"
 
 # 内容
 # Content
@@ -32,7 +32,7 @@ status.addButton.back: "Back to Menu"
 # %MONEY%...Player's Money(Economy)
 # %X%, %Y%, %Z%...Player's XYZ
 # {NL}...New Line
-status.setContent: "%PLAYER%'s money: %MONEY%{NL}%X%{NL}%Y%{NL}%Z%"
+player_status.setContent: "%PLAYER%'s money: %MONEY%{NL}%X%{NL}%Y%{NL}%Z%"
 
 # コンソールのタイトル
 # Title
