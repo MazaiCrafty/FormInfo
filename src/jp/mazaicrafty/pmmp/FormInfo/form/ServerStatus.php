@@ -33,7 +33,7 @@ class ServerStatus implements CallAction{
                 if($result === null) return;// NOTE: Cancelled
 
                 switch ($result){
-                    case Status::BACK_BUTTON:
+                    case ServerStatus::BACK_BUTTON:
                     // Back to Menu
                     $this->getMain()->getMenu()->createMenu($player);
                     return;
