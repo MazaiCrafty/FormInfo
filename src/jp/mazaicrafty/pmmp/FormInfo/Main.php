@@ -30,7 +30,7 @@ use onebone\economyapi\EconomyAPI;
 
 # FormInfo
 use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
-use jp\mazaicrafty\pmmp\FormInfo\form\Status;
+use jp\mazaicrafty\pmmp\FormInfo\form\PlayerStatus;
 use jp\mazaicrafty\pmmp\FormInfo\form\Console;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
 
@@ -80,7 +80,7 @@ class Main extends PluginBase{
         $this->listener = new EventListener($this);
         $this->provider = new Provider($this);
         $this->menu = new Menu($this);
-        $this->status = new Status($this);
+        $this->status = new PlayerStatus($this);
         $this->console = new Console($this);
     }
 
