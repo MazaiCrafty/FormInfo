@@ -135,7 +135,7 @@ class Main extends PluginBase{
     /**
      * @return Status
      */
-    public function getStatus(): Status{
+    public function getStatus(): PlayerStatus{
         return $this->status;
     }
 
