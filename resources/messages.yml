@@ -20,7 +20,7 @@ menu.addButton.console: "Console"
 
 # 個人チャットのボタン
 # Private Chat button
-menu.addButton.private-chat: "PriavteChat"
+menu.addButton.private-chat: "PrivateChat"
 
 # ステータスのタイトル
 # Title
