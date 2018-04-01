@@ -1,3 +1,11 @@
 # Formを開くアイテム
 # Item to Open Form
-tap.item: 1
+tap.item: 2
+# ダメージ値
+tap.item-damage: 0
+# 量
+tap.item-amount: 1
+
+# 参加時にアイテムを付与する
+# Grant item at the time of join
+join.give-item: true
