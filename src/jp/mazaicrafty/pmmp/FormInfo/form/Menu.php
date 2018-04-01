@@ -16,6 +16,7 @@ class Menu implements CallAction{
     const CLOSE_BUTTON = 0;
     const PLAYER_STATUS_BUTTON = 1;
     const CONSOLE_BUTTON = 2;
+    const PRIVATE_CHAT_BUTTON = 3;
 
     /**
      * @var Main
@@ -49,6 +50,10 @@ class Menu implements CallAction{
                     case Menu::CONSOLE_BUTTON:
                     $this->getMain()->getConsole()->createConsole($player);
                     return;
+
+                    case Menu::PRIVATE_CHAT_BUTTON:
+                    $this->getMain()->getPrivateChat()->createPrivateChat($player);
+                    return;
                 }
             }
         );
@@ -58,6 +63,7 @@ class Menu implements CallAction{
         $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.close")); // Close the Menu
         $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.status")); // createStatus()
         $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.console")); // createConsole()
+        $form->addButton($this->getMain()->getProvider()->getMessage("menu.addButton.private-chat")); // createPrivateChat()
 
         $form->sendToPlayer($player);
     }
