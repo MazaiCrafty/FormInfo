@@ -18,6 +18,10 @@ menu.addButton.status: "Status"
 # Console button
 menu.addButton.console: "Console"
 
+# 個人チャットのボタン
+# Private Chat button
+menu.addButton.private-chat: "PriavteChat"
+
 # ステータスのタイトル
 # Title
 player_status.setTitle: "Status"
@@ -45,3 +49,19 @@ console.addButton.back: "Back to Menu"
 # インプット
 # Input
 console.addInput.command: "Execute"
+
+# 自分に送らせないようにする
+private-chat.target.myself: "自分自身に送れません"
+
+# %SENDER%...送った人の名前
+private-chat.message: "%SENDER%から"
+
+# タイトル
+# Title
+private-chat.setTitle: "PrivateChat"
+
+# ドロップダウンの説明
+private-chat.addDropdown.player: "プレイヤー名"
+
+# インプットの説明
+private-chat.addInput.text: "テキスト"
