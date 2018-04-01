@@ -32,6 +32,7 @@ use onebone\economyapi\EconomyAPI;
 use jp\mazaicrafty\pmmp\FormInfo\form\Menu;
 use jp\mazaicrafty\pmmp\FormInfo\form\PlayerStatus;
 use jp\mazaicrafty\pmmp\FormInfo\form\Console;
+use jp\mazaicrafty\pmmp\FormInfo\form\PrivateChat;
 use jp\mazaicrafty\pmmp\FormInfo\{EventListener, Provider};
 
 class Main extends PluginBase{
@@ -71,6 +72,11 @@ class Main extends PluginBase{
      */
     private $console;
 
+    /**
+     * @var PrivateChat
+     */
+    private $privateChat;
+
     public function onEnable(): void{
         $this->loadAPI();
         $this->loadClass();
@@ -82,6 +88,7 @@ class Main extends PluginBase{
         $this->menu = new Menu($this);
         $this->status = new PlayerStatus($this);
         $this->console = new Console($this);
+        $this->privateChat = new PrivateChat($this);
     }
 
     public function loadAPI(): void{
@@ -144,6 +151,13 @@ class Main extends PluginBase{
      */
     public function getConsole(): Console{
         return $this->console;
+    }
+
+    /**
+     * @return PrivateChat
+     */
+    public function getPrivateChat(): PrivateChat{
+        return $this->privateChat;
     }
 
 }
