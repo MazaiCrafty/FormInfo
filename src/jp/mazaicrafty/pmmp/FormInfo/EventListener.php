@@ -2,14 +2,11 @@
 
 namespace jp\mazaicrafty\pmmp\FormInfo;
 
-# Base
 use pocketmine\Server;
-
-# Events
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
-
-# FormInfo
+use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\item\Item;
 use jp\mazaicrafty\pmmp\FormInfo\Main;
 
 class EventListener implements Listener{
@@ -24,7 +21,26 @@ class EventListener implements Listener{
         $this->main = $main;
         $this->getMain()->getServer()->getPluginManager()->registerEvents($this, $main);
     }
-
+    
+    /**
+     * @param PlayerJoinEvent $event
+     */
+    public function onJoin(PlayerJoinEvent $event): void{
+        $player = $event->getPlayer();
+        if ($this->getMain()->getProvider()->getSetting("join.give-item")){
+            $tap = $this->getMain()->getProvider()->getSetting("tap.item");
+            $damage = $this->getMain()->getProvider()->getSetting("tap.item-damage");
+            $amount = $this->getMain()->getProvider()->getSetting("tap.item-amount");
+            $item = Item::get($tap, $damage, $amount);
+            if ($player->getInventory()->contains($item)){
+                return;
+            }
+            else{
+                $player->getInventory()->addItem($item);
+            }
+        }
+    }
+    
     /**
      * @param PlayerInteractEvent $event
      */
