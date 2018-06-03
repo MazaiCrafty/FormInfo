@@ -32,10 +32,7 @@ class EventListener implements Listener{
             $damage = $this->getMain()->getProvider()->getSetting("tap.item-damage");
             $amount = $this->getMain()->getProvider()->getSetting("tap.item-amount");
             $item = Item::get($tap, $damage, $amount);
-            if ($player->getInventory()->contains($item)){
-                return;
-            }
-            else{
+            if (!($player->getInventory()->contains($item))){
                 $player->getInventory()->addItem($item);
             }
         }
